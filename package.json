@@ -4,15 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron main.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc -b && electron ./build/app.js",
+    "dev": "parcel ./app/index.html",
+    "compile": "parcel ./app/index.html --public-url .",
+    "test": "ts-node ./tests/indexPhotos.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "10.12.18",
+    "babel-core": "6.26.3",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
     "electron": "^4.0.0",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "knex": "0.16.3",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
+    "sqlite3": "4.0.4",
+    "walker": "1.0.7"
   }
 }

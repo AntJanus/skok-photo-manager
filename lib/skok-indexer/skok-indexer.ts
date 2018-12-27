@@ -1,20 +1,39 @@
-import path from 'path';
-import walker from 'walk-tree';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as walker from 'walker';
 
 interface Visitor {
-  (type: 'file' | 'folder', data: any): any;
+  (data: any, cb: {():any}): any;
 }
 
 export function walkPhotos(photoPath: string, visitor: Visitor) {
   return new Promise((resolve, reject) => {
+    let queuedPromises = 0;
+
     walker(photoPath)
-      .on('folder', folder => {
-        visitor('folder', folder);
-      })
       .on('file', file => {
-        visitor('file', file);
+        queuedPromises++;
+        let stats = fs.statSync(file);
+
+        let fileObj = constructFileObject(file, stats);
+
+        visitor(fileObj, () => queuedPromises--);
       })
       .on('end', resolve)
       .on('error', reject);
   });
+}
+
+function constructFileObject(file, stats) {
+  let parsedPath = path.parse(file);
+
+  return {
+    name: parsedPath.name,
+    file_name: parsedPath.base,
+    full_path: path.resolve(file),
+    file_type: parsedPath.ext.slice(1).toLowerCase(),
+    size: stats.size,
+    created_at: new Date(stats.birthtime),
+    updated_at: new Date(stats.mtime),
+  };
 }
