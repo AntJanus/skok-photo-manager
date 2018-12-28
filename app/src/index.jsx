@@ -1,21 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { ipcRenderer } from "electron";
 
-const JSX = (
-  <div>
-    <header>
-      <h1 className="title">
-        <span className="text-primary">Skok</span> Photo Manager
-      </h1>
-    </header>
-    <main>
-      <div>
-        <input type="text" placeholder="Directory path"/>
-      </div>
-      <br />
-      <a href="#" className="button-primary">Scan photo directory</a>
-    </main>
-  </div>
-);
+import { transponder } from "../../lib/electron-communicator/electron-communicator";
 
-ReactDOM.render(JSX, document.getElementById('root'));
+import { Header } from "./components/header";
+import { Main } from './components/main';
+import { Footer } from './components/footer';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    transponder(ipcRenderer);
+  }
+
+  render() {
+  return (
+    <div className="grid-container">
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
+  }
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));

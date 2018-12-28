@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc -b && electron ./build/app.js",
-    "dev": "parcel ./app/index.html",
-    "compile": "parcel ./app/index.html --public-url .",
+    "dev": "parcel ./app/index.html --target electron",
+    "compile": "parcel ./app/index.html --public-url . --no-hmr --target electron",
     "test": "ts-node ./tests/indexPhotos.test.ts"
   },
   "keywords": [],

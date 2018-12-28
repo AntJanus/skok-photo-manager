@@ -1,0 +1,12 @@
+header {
+  padding: 5px 20px;
+  background-color: $grey;
+  border-bottom: 1px solid darken($grey, 10%);
+}
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  font-family: $font-family-heading;
+  font-weight: 800;
+}

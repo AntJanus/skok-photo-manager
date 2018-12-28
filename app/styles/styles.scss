@@ -1,9 +1,10 @@
 //colors
-$primary: rgb(136, 122, 1);
+$primary: rgb(197, 115, 38);
+$grey: #efefef;
 $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $font-family-heading: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
-body, html {
+body, html, #root {
   font-family: $font-family;
   height: 100%;
   width: 100%;
@@ -16,20 +17,14 @@ body, html {
   color: $primary;
 }
 
+// grid
+@import "components/grid";
+
 // navigation
-header {
-  padding: 15px;
-}
-.title {
-  text-transform: uppercase;
-  font-family: $font-family-heading;
-  font-weight: 800;
-}
+@import "components/header";
 
 // main
-main {
-  padding: 15px;
-}
+@import "components/main";
 
 // forms
 input[type="text"] {
