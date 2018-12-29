@@ -1,23 +1,21 @@
-import * as path from 'path';
+import { indexPhotos } from './actions/indexPhotos';
+import { getPhotos } from './actions/getPhotos';
 
-import { walkPhotos } from '../lib/skok-indexer/skok-indexer';
-import { db } from './db';
+import { communicator } from '../lib/electron-communicator/electron-communicator';
+import { ipcMain } from 'electron';
 
-export async function indexPhotos(photoPath) {
-  const date = new Date();
+let comm = communicator(ipcMain);
 
-  await walkPhotos(photoPath, indexPhoto(photoPath, date, db));
-}
+communicator.register('GET', 'photos', async (req, res) => {
+  let photos = await getPhotos(req.data.limit);
 
-function indexPhoto(photoPath, indexId, conn) {
-  return (file, cb) => {
+  res.send(200, photos);
+});
 
-    conn('files').insert({
-      ...file,
-      index_id: indexId,
-    })
-    .then(() => {
-      cb();
-    })
-  };
-}
+communicator.register('POST', 'photos/index', async (req, res) => {
+  await indexPhotos(req.data.path);
+
+  res.send(200, {
+    message: 'Photos indexed'
+  });
+});
