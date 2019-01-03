@@ -13,72 +13,66 @@ interface GlobalListener {
   (data: any): any;
 }
 
-export function transponder(ipcRenderer) {
-  let listeners: Dictionary<Listener> = {};
-  let globalListeners: Dictionary<GlobalListener[]> = {};
+export class Transponder {
+  private listeners: Dictionary<Listener> = {};
+  private globalListeners: Dictionary<GlobalListener[]> = {};
 
-  const send = (action, route, data) => {
+  constructor(private ipcRenderer) {
+    ipcRenderer.on('asynchronous-reply', (event, arg) => {
+      if (arg === 'PONG') {
+        return console.log('PONG');
+      }
+
+      if (arg.global) {
+        return this.handleGlobalBroadcast(arg);
+      }
+
+      if (this.listeners[arg.uuid]) {
+        this.listeners[arg.uuid].resolve(arg.data);
+        this.listeners[arg.uuid] = undefined;
+      }
+    });
+  }
+
+  send(action, route, data) {
     return new Promise((resolve, reject) => {
-      let payload = createMessage(action, route, data);
+      let payload = this.createMessage(action, route, data);
 
-      listeners[payload.uuid] = { resolve, reject };
-      ipcRenderer.send('asynchronous-message', payload);
+      this.listeners[payload.uuid] = { resolve, reject };
+      this.ipcRenderer.send('asynchronous-message', payload);
     });
-  };
+  }
 
-  const registerGlobalListener = (action, route, cb) => {
+  registerGlobalListener(action, route, cb) {
     let key = `${action}:${route}`;
-    if (globalListeners[key]) {
-      globalListeners[key] = [];
+    if (this.globalListeners[key]) {
+      this.globalListeners[key] = [];
     }
 
-    globalListeners[key].push(cb);
+    this.globalListeners[key].push(cb);
   }
 
-  const ping = () => {
-    ipcRenderer.send('asynchronous-message', 'PING');
+  ping() {
+    this.ipcRenderer.send('asynchronous-message', 'PING');
   }
 
-  let comm = {
-    ping,
-    send,
-    registerGlobalListener
-  };
-
-  ipcRenderer.on('asynchronous-reply', (event, arg) => {
-    if (arg === 'PONG') {
-      return console.log('PONG');
+  createMessage(action, route, data) {
+    return {
+      uuid: nanoid(),
+      action,
+      route,
+      data,
     }
-
-    if (arg.global) {
-      return handleGlobalBroadcast(arg, globalListeners);
-    }
-
-    if (listeners[arg.uuid]) {
-      listeners[arg.uuid].resolve(arg.data);
-      listeners[arg.uuid] = undefined;
-    }
-  });
-
-  return comm;
-}
-
-function createMessage(action, route, data) {
-  return {
-    uuid: nanoid(),
-    action,
-    route,
-    data,
   }
-}
 
-function handleGlobalBroadcast(arg, globalListeners) {
-  let key = `${arg.action}:${arg.route}`;
-  let listeners = globalListeners[key];
+  handleGlobalBroadcast(arg) {
+    let key = `${arg.action}:${arg.route}`;
+    let listeners = this.globalListeners[key];
 
-  if (listeners) {
-    listeners.forEach(listener => {
-      listener(arg.data);
-    });
+    if (listeners) {
+      listeners.forEach(listener => {
+        listener(arg.data);
+      });
+    }
   }
 }
