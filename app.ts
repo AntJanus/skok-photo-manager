@@ -8,6 +8,7 @@ function createWindow() {
 
   console.log('Process', process.cwd());
   application.bootstrap();
+  console.log('Application bootstrapped');
   let filePath = path.resolve(process.cwd(), './dist/index.html');
 
   win.loadFile(filePath);

@@ -7,7 +7,7 @@ export class Communicator {
   constructor(private ipcMain) {
     console.log('Listening to messages');
     ipcMain.on("asynchronous-message", (event, arg) => {
-      console.log('Messages: ', event, arg);
+      console.log('Messages: ', arg);
       if (arg === "PING") {
         console.log("PING");
         return event.sender.send("asynchronous-reply", "PONG");

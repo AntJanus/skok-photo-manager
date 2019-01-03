@@ -7,6 +7,7 @@ import { ipcMain } from 'electron';
 let comm = new Communicator(ipcMain);
 
 export function bootstrap() {
+  console.log('Bootstrapping back-end');
   comm.register('GET', 'photos', async (req, res) => {
     let photos = await getPhotos(req.data.limit);
 

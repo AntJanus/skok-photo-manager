@@ -32,6 +32,8 @@ export class Transponder {
         this.listeners[arg.uuid] = undefined;
       }
     });
+
+    this.ping();
   }
 
   send(action, route, data) {
