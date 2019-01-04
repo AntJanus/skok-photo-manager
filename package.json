@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -b && electron ./build/app.js",
+    "start": "tsc && electron ./build/app.js",
     "dev": "parcel ./app/index.html --target electron",
     "compile": "parcel ./app/index.html --public-url . --no-hmr --target electron",
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "test": "ts-node ./tests/indexPhotos.test.ts"
   },
   "keywords": [],
@@ -19,12 +19,12 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "electron": "^4.0.0",
+    "electron-builder": "20.38.4",
     "sass": "1.15.2",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "electron-builder": "20.38.4",
     "knex": "0.16.3",
     "nanoid": "2.0.0",
     "react": "16.7.0",

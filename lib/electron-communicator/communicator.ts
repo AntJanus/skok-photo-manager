@@ -7,7 +7,7 @@ export class Communicator {
   constructor(private ipcMain) {
     console.log('Listening to messages');
     ipcMain.on("asynchronous-message", (event, arg) => {
-      console.log('Messages: ', arg);
+      console.log('Received message', arg);
       if (arg === "PING") {
         console.log("PING");
         return event.sender.send("asynchronous-reply", "PONG");
@@ -27,6 +27,7 @@ export class Communicator {
     let isValid = this.validateMessage(arg);
 
     if (!isValid) {
+      console.error('Message not valid');
       return;
     }
 
@@ -34,7 +35,8 @@ export class Communicator {
     let req = this.buildRequest(event, arg);
     let res = this.buildResponse(event, arg);
 
-    handler(req, res);
+    handler(req, res)
+      .then(() => {});
   }
 
   validateRoute(action, route, handler) {

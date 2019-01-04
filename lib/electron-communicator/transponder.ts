@@ -28,6 +28,7 @@ export class Transponder {
       }
 
       if (this.listeners[arg.uuid]) {
+        console.log('Arg: ', arg);
         this.listeners[arg.uuid].resolve(arg.data);
         this.listeners[arg.uuid] = undefined;
       }

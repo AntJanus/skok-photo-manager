@@ -11,13 +11,14 @@ export function bootstrap() {
   comm.register('GET', 'photos', async (req, res) => {
     let photos = await getPhotos(req.data.limit);
 
-    res.send(200, photos);
+    console.log('res', res.send);
+    res.send(photos);
   });
 
   comm.register('POST', 'photos/index', async (req, res) => {
     await indexPhotos(req.data.path);
 
-    res.send(200, {
+    res.send({
       message: 'Photos indexed'
     });
   });
