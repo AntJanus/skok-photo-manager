@@ -1,6 +1,6 @@
 import React from "react";
 
-import { transponder } from '../services/transponder';
+import { transponder } from "../services/transponder";
 
 export class Main extends React.Component {
   constructor(props) {
@@ -8,33 +8,35 @@ export class Main extends React.Component {
   }
 
   getPhotos() {
-    transponder.send('GET', 'photos', {})
-      .then(data => {
-        console.log('Response: ', data);
-      })
+    transponder.send("GET", "photos", {}).then(data => {
+      console.log("Response: ", data);
+    });
   }
 
   indexPhotos() {
-    transponder.send('POST', 'photos/index', {
-      path: '.'
-    })
-      .then(data => {
-        console.log('Response: ', data);
+    transponder
+      .send("POST", "photos/index", {
+        path: "."
       })
+      .then(data => {
+        console.log("Response: ", data);
+      });
   }
 
   render() {
     return (
       <main>
         <div>
-          <input type="text" placeholder="Enter path" />
+          <p>
+            Select a directory to be scanned. Photos and files will be scanned
+            into a database and the gallery will make those available. This
+            process may take a while.
+          </p>
+          <input type="file" placeholder="Enter path" directory multiple />
         </div>
         <br />
         <a href="#" className="button-primary" onClick={this.indexPhotos}>
-          Scan photo directory
-        </a>
-        <a href="#" className="button-primary" onClick={this.getPhotos}>
-          Get indexed photos
+          Scan directory
         </a>
       </main>
     );

@@ -1,12 +1,17 @@
-header {
-  padding: 5px 20px;
-  background-color: $grey;
-  border-bottom: 1px solid darken($grey, 10%);
-}
+@import "../settings.scss";
 
-.title {
+header {
+  font-family: $font-family;
+  background: $primary;
+  color: #fff;
+  margin-top: 0;
+  padding: 15px;
   text-transform: uppercase;
-  text-align: center;
-  font-family: $font-family-heading;
-  font-weight: 800;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  h1 {
+    margin: 0;
+    text-shadow: -3px -2px 0 darken($secondary, 5%);
+  }
 }

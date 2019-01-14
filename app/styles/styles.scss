@@ -1,50 +1,16 @@
-//colors
-$primary: rgb(197, 115, 38);
-$grey: #efefef;
-$font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-$font-family-heading: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+@import "./settings";
+@import "./components/header";
+@import "./components/main";
 
-body, html, #root {
+@import "./components/grid";
+@import "./components/buttons";
+
+body,
+html,
+#root {
   font-family: $font-family;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
-}
-
-// typography
-.text-primary {
-  color: $primary;
-}
-
-// grid
-@import "components/grid";
-
-// navigation
-@import "components/header";
-
-// main
-@import "components/main";
-
-// forms
-input[type="text"] {
-  padding: 5px 10px;
-  border: 1px solid #aeaeae;
-}
-
-// buttons
-.button-primary {
-  display: inline-block;
-  background-color: $primary;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #ffffff;
-  text-transform: uppercase;
-  transition-duration: 100ms;
-  transition-timing-function: ease-in;
-
-  &:hover {
-    background-color: darken($primary, 10);
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 30%);
-  }
 }
