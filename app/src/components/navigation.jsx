@@ -27,7 +27,7 @@ export class Navigation extends React.Component {
     return (
       <nav>
         <ul>
-          <li class="active-link">
+          <li className="active-link">
             <a href="#">
               <span className="fas fa-file-alt" /> Index Photos
             </a>

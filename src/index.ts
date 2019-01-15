@@ -1,5 +1,6 @@
 import { indexPhotos } from './actions/indexPhotos';
 import { getPhotos } from './actions/getPhotos';
+import { openFolder } from './actions/openFolder';
 
 import { Communicator } from '../lib/electron-communicator/electron-communicator';
 import { ipcMain } from 'electron';
@@ -21,4 +22,12 @@ export function bootstrap() {
       message: 'Photos indexed'
     });
   });
+
+  comm.register('GET', 'photos/open-folder', async (req, res) => {
+    let result = await openFolder();
+
+    res.send({
+      path: result[0]
+    })
+  })
 }
