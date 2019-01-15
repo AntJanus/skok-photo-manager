@@ -1,6 +1,7 @@
 @import "../settings.scss";
 
 .button-primary {
+  display: inline-block;
   background-color: $primary;
   color: #fff;
   text-decoration: none;
