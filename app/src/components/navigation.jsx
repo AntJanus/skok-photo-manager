@@ -27,6 +27,11 @@ export class Navigation extends React.Component {
     return (
       <nav>
         <ul>
+          <li>
+            <a href="#">
+              <span className="fas fa-calendar-day" /> Photo of the Day
+            </a>
+          </li>
           <li className="active-link">
             <a href="#">
               <span className="fas fa-file-alt" /> Index Photos

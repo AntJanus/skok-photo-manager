@@ -6,7 +6,7 @@ import { db } from '../db';
 export async function indexPhotos(photoPath) {
   const date = new Date();
 
-  await walkPhotos(photoPath, indexPhoto(photoPath, date, db));
+  return await walkPhotos(photoPath, indexPhoto(photoPath, date, db));
 }
 
 function indexPhoto(photoPath, indexId, conn) {

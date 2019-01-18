@@ -9,6 +9,7 @@ interface Visitor {
 export function walkPhotos(photoPath: string, visitor: Visitor) {
   return new Promise((resolve, reject) => {
     let queuedPromises = 0;
+    let total = 0;
 
     walker(photoPath)
       .on('file', file => {
@@ -18,8 +19,13 @@ export function walkPhotos(photoPath: string, visitor: Visitor) {
         let fileObj = constructFileObject(file, stats);
 
         visitor(fileObj, () => queuedPromises--);
+        total++;
       })
-      .on('end', resolve)
+      .on('end', () => {
+        resolve({
+          totalPhotos: total
+        })
+      })
       .on('error', reject);
   });
 }

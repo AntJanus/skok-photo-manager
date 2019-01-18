@@ -9,9 +9,12 @@ export class Main extends React.Component {
     this.state = {
       path: '',
       selectedFolder: false,
+      totalPhotos: null,
+      indexed: false
     };
 
     this.openFolder = this.openFolder.bind(this);
+    this.indexPhotos = this.indexPhotos.bind(this);
   }
 
   getPhotos() {
@@ -24,6 +27,7 @@ export class Main extends React.Component {
     transponder.send('GET', 'photos/open-folder', {}).then(data => {
       console.log('Data: ', data);
       this.setState({
+        indexed: false,
         path: data.path,
         selectedFolder: true,
       });
@@ -33,16 +37,24 @@ export class Main extends React.Component {
   indexPhotos() {
     transponder
       .send('POST', 'photos/index', {
-        path: '.',
+        path: this.state.path
       })
       .then(data => {
-        console.log('Response: ', data);
+        this.setState({
+          indexed: true,
+          selectedFolder: false,
+          totalPhotos:  data.totalPhotos,
+          path: '',
+        })
       });
   }
 
   render() {
     return (
       <main>
+        {this.state.indexed && <p>Your photos have been indexed with a total of {this.state.totalPhotos} photos.</p>
+          }
+
         {this.state.selectedFolder ? (
           <div>
             <p>

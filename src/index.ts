@@ -16,10 +16,11 @@ export function bootstrap() {
   });
 
   comm.register('POST', 'photos/index', async (req, res) => {
-    await indexPhotos(req.data.path);
+    let stats = await indexPhotos(req.data.path);
 
     res.send({
-      message: 'Photos indexed'
+      message: 'Photos indexed',
+      ...stats
     });
   });
 

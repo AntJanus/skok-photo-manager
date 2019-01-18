@@ -10,5 +10,6 @@
 
   &:hover {
     background-color: darken($primary, 10%);
+    border-radius: 3px;
   }
 }
