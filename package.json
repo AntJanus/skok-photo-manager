@@ -33,6 +33,7 @@
     "nanoid": "2.0.0",
     "react": "16.7.0",
     "react-dom": "16.7.0",
+    "react-router-dom": "4.4.0-beta.6",
     "sqlite3": "4.0.4",
     "walker": "1.0.7"
   },

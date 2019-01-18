@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import styles from "../styles/styles.scss";
+import {HashRouter as Router } from 'react-router-dom';
 
 import { Header } from "./components/header";
 import { Main } from "./components/main";
@@ -15,12 +14,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="grid-container">
-        <Header />
-        <Navigation />
-        <Main />
-        <Footer />
-      </div>
+      <Router>
+        <div className="grid-container">
+          <Header />
+          <Navigation />
+          <Main />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }

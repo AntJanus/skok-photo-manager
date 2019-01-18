@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 
 import { transponder } from "../services/transponder";
 
@@ -28,14 +29,14 @@ export class Navigation extends React.Component {
       <nav>
         <ul>
           <li>
-            <a href="#">
+            <NavLink to="/" exact activeClassName="active-link">
               <span className="fas fa-calendar-day" /> Photo of the Day
-            </a>
+            </NavLink>
           </li>
-          <li className="active-link">
-            <a href="#">
+          <li>
+            <NavLink to="/photo-index" activeClassName="active-link">
               <span className="fas fa-file-alt" /> Index Photos
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#">
