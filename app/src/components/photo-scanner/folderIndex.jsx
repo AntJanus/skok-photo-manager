@@ -12,7 +12,7 @@ export class FolderIndex extends React.Component {
   indexPhotos() {
     transponder
       .send('POST', 'photos/index', {
-        path: this.state.path
+        path: this.props.path
       })
       .then(data => {
         this.props.handleIndex(data.totalPhotos);
@@ -29,7 +29,7 @@ export class FolderIndex extends React.Component {
               <strong>{this.props.path}</strong>
             </p>
             <div>
-              <a href="#" className="button-primary" onClick={this.indexPhotos}>
+              <a className="button-primary" onClick={this.indexPhotos}>
                 Scan directory
               </a>
             </div>

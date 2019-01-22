@@ -3,7 +3,7 @@ import React from 'react';
 export const Header = () => (
     <header>
       <h1 className="title">
-        <span className="text-primary">Skok</span> Photo Manager
+        <span className="fas fa-camera-retro"></span> Skok
       </h1>
     </header>
 );

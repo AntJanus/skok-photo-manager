@@ -1,18 +1,12 @@
 import React from 'react';
 
-export class ScanSummary extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        {
-          this.props.indexed &&
-          <p>Your photos have been indexed witha  total of {this.props.totalPhotos} photos.</p>
-        }
-      </div>
-    );
-  }
+export function ScanSummary(props) {
+  return (
+    <div>
+      {
+        props.indexed &&
+        <p>Your photos have been indexed witha  total of {props.totalPhotos} photos.</p>
+      }
+    </div>
+  );
 }

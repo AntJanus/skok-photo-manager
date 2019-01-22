@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 
-import { PhotoIndexRoute } from './routes/photo-index';
+import { PhotoIndexRoute } from './photo-scanner/photoRoute';
+import { GalleryRoute } from './gallery/galleryRoute';
+import { GalleryViewRoute } from './gallery/galleryViewRoute';
 
-const Index = () => <h1>Welcome!</h1>;
+const Index = () => <p>Could not find a photo of the day.</p>;
 
 export class Main extends React.Component {
   constructor(props) {
@@ -13,8 +15,12 @@ export class Main extends React.Component {
   render() {
     return (
       <main>
-        <Route path="/" exact component={Index} />
-        <Route path="/photo-index" component={PhotoIndexRoute} />
+        <Switch>
+          <Route path="/" exact component={Index} />
+          <Route path="/photo-index" component={PhotoIndexRoute} />
+          <Route exact path="/gallery" component={GalleryRoute} />
+          <Route path="/gallery/:id" component={GalleryViewRoute} />
+        </Switch>
       </main>
     );
   }

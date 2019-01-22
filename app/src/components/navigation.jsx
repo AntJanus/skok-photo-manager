@@ -39,10 +39,10 @@ export class Navigation extends React.Component {
             </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/gallery" activeClassName="active-link">
               <span className="fas fa-camera" />
               Gallery
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#">

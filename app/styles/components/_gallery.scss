@@ -1,0 +1,24 @@
+@import "../settings.scss";
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+.gallery-image {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.gallery-single-image {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+}

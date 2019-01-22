@@ -1,5 +1,5 @@
 import { indexPhotos } from './actions/indexPhotos';
-import { getPhotos } from './actions/getPhotos';
+import { getPhotos, getPhoto } from './actions/getPhotos';
 import { openFolder } from './actions/openFolder';
 
 import { Communicator } from '../lib/electron-communicator/electron-communicator';
@@ -13,6 +13,16 @@ export function bootstrap() {
     let photos = await getPhotos(req.data.limit);
 
     res.send(photos);
+  });
+
+  comm.register('GET', 'photo', async (req, res) => {
+    let photo = await getPhoto(req.data.id);
+
+    if (photo.length === 0) {
+      return res.send({ status: 404 });
+    }
+
+    res.send(photo[0]);
   });
 
   comm.register('POST', 'photos/index', async (req, res) => {

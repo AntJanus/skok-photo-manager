@@ -5,3 +5,11 @@ export function getPhotos(limit = 10) {
     .select('*')
     .limit(limit);
 }
+
+export function getPhoto(id: number) {
+  console.log('id: ', id);
+  return db('files')
+    .select('*')
+    .where('id', id)
+    .limit(1);
+}

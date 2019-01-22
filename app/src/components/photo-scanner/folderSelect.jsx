@@ -24,7 +24,7 @@ export class FolderSelect extends React.Component {
               into a database and the gallery will make those available. This
               process may take a while.
             </p>
-            <a href="#" className="button-primary" onClick={this.openFolder}>
+            <a className="button-primary" onClick={this.openFolder}>
               Pick a directory
             </a>
           </div>
