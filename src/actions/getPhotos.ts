@@ -7,7 +7,6 @@ export function getPhotos(limit = 10) {
 }
 
 export function getPhoto(id: number) {
-  console.log('id: ', id);
   return db('files')
     .select('*')
     .where('id', id)

@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.string('full_path');
       table.string('file_type');
       table.string('index_id');
+      table.string('hash');
       table.float('size');
       table.timestamps();
     });

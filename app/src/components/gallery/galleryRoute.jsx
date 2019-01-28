@@ -1,6 +1,6 @@
 import React from 'react';
 import { transponder } from '../../services/transponder';
-import { GalleryImage } from './galleryImage';
+import { GalleryImage } from './GalleryImage';
 
 export class GalleryRoute extends React.Component {
   constructor(props) {

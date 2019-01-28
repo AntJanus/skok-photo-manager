@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as walker from 'walker';
+import * as md5File from 'md5-file';
 
 interface Visitor {
   (data: any, cb: {():any}): any;
@@ -15,8 +16,9 @@ export function walkPhotos(photoPath: string, visitor: Visitor) {
       .on('file', file => {
         queuedPromises++;
         let stats = fs.statSync(file);
+        let md5 = md5File.sync(file);
 
-        let fileObj = constructFileObject(file, stats);
+        let fileObj = constructFileObject(file, stats, md5);
 
         visitor(fileObj, () => queuedPromises--);
         total++;
@@ -30,7 +32,7 @@ export function walkPhotos(photoPath: string, visitor: Visitor) {
   });
 }
 
-function constructFileObject(file, stats) {
+function constructFileObject(file, stats, md5) {
   let parsedPath = path.parse(file);
 
   return {
@@ -39,6 +41,7 @@ function constructFileObject(file, stats) {
     full_path: path.resolve(file),
     file_type: parsedPath.ext.slice(1).toLowerCase(),
     size: stats.size,
+    hash: md5,
     created_at: new Date(stats.birthtime),
     updated_at: new Date(stats.mtime),
   };

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ScanSummary } from './scanSummary';
-import { FolderIndex } from './folderIndex';
-import { FolderSelect } from './folderSelect';
+import { ScanSummary } from './ScanSummary';
+import { FolderIndex } from './FolderIndex';
+import { FolderSelect } from './FolderSelect';
 
 export class PhotoIndexRoute extends React.Component {
   constructor(props) {

@@ -45,6 +45,12 @@ export class Navigation extends React.Component {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/actions" activeClassName="active-link">
+              <span className="fas fa-compress-arrows-alt"></span>
+              Actions
+            </NavLink>
+          </li>
+          <li>
             <a href="#">
               <span className="fas fa-cogs" />
               Settings
