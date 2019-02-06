@@ -1,10 +1,9 @@
+**/*.sqlite
 node_modules
 tests/images
 build
 dist
 .cache
 .cache/*
-*.sqlite*
-**/*.sqlite
 src/skokdb.sqlite
 thumbnails/*
