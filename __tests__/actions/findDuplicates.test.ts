@@ -26,5 +26,5 @@ afterEach(() => {
 test('should find duplicates', async () => {
   let duplicates = findDuplicates();
 
-
+  console.log('Duplicates: ', duplicates);
 });
