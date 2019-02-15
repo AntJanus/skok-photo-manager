@@ -8,7 +8,7 @@
     "start:electron": "onchange -i -k \"src/**/*.ts\" -- npm run electron",
     "start:web": "parcel ./app/index.html --public-url . --no-hmr --target electron",
     "electron": "tsc && electron ./build/app.js",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-rebuild",
     "test": "jest",
     "update:dry": "npx npm-check-updates",
     "update:install": "npx npm-check-updates -u && npm install"
@@ -23,7 +23,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "electron": "^4.0.4",
-    "electron-builder": "20.38.5",
+    "electron-rebuild": "1.8.4",
     "jest": "24.1.0",
     "onchange": "5.2.0",
     "prettier": "1.16.4",
