@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
       table.string('index_id');
       table.string('hash');
       table.float('size');
+      table.string('simple_date');
       table.timestamps();
     });
 };

@@ -9,7 +9,8 @@ interface File {
   full_path: string,
   file_type: string,
   size: number,
-  hash: string
+  hash: string,
+  created_at: any
 }
 
 export async function indexPhotos(photoPath) {
@@ -27,8 +28,13 @@ function indexPhoto(photoPath: string, indexId: any, conn) {
           return;
         }
 
+        let date = new Date(file.created_at);
+
+        let simpleDate = `${date.getDate()}/${date.getMonth() + 1}`
+
         return conn('files').insert({
           ...file,
+          simple_date:
           index_id: indexId,
         });
       })
