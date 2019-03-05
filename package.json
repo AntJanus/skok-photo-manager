@@ -43,7 +43,7 @@
     "react-dom": "16.8.1",
     "react-router-dom": "4.4.0-beta.6",
     "sharp": "0.21.3",
-    "sqlite3": "4.0.6",
+    "sqlite3": "^4.0.6",
     "walker": "1.0.7"
   },
   "husky": {
