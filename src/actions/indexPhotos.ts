@@ -29,12 +29,15 @@ function indexPhoto(photoPath: string, indexId: any, conn) {
         }
 
         let date = new Date(file.created_at);
-
-        let simpleDate = `${date.getDate()}/${date.getMonth() + 1}`
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
 
         return conn('files').insert({
           ...file,
-          simple_date:
+          simple_day: day,
+          simple_month: month,
+          simple_year: year,
           index_id: indexId,
         });
       })

@@ -1,6 +1,7 @@
 import React from 'react';
 import { transponder } from '../../services/transponder';
 import { GalleryImage } from './GalleryImage';
+import { Pagination } from './Pagination';
 
 export class GalleryRoute extends React.Component {
   constructor(props) {
@@ -30,7 +31,11 @@ export class GalleryRoute extends React.Component {
     })
     return (
       <div className="gallery-container">
-        {photos}
+        <GalleryViewChooser />
+        <div>
+          {photos}
+        </div>
+        <Pagination />
       </div>
     )
   }

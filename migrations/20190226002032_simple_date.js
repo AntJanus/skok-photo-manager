@@ -1,16 +1,13 @@
-
 exports.up = function(knex, Promise) {
-  return knex
-    .schema
-    .table('files', table => {
-      table.string('simple_date');
-    });
+  return knex.schema.table('files', table => {
+    table.integer('simple_day');
+    table.integer('simple_month');
+    table.integer('simple_year');
+  });
 };
 
 exports.down = function(knex, Promise) {
-  return knex
-    .schema
-    .table('files', table => {
-      table.dropColumn('simple_date');
-    });
+  return knex.schema.table('files', table => {
+    table.dropColumns(['simple_day', 'simple_month', 'simple_year']);
+  });
 };
