@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Pagination({ total: total, offset: offset, perPage: perPage}) {
+export function Pagination({ total, offset, perPage }) {
   let pages =  Math.ceil(total / perPage);
   let currentPage = Math.ceil(offset / perPage);
   let pageListItems = [];

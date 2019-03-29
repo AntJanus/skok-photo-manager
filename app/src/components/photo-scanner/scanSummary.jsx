@@ -1,11 +1,11 @@
 import React from 'react';
 
-export function ScanSummary(props) {
+export function ScanSummary({ indexed: indexed, totalPhotos: totalPhotos }) {
   return (
     <div>
       {
-        props.indexed &&
-        <p>Your photos have been indexed witha  total of {props.totalPhotos} photos.</p>
+        indexed &&
+        <p>Your photos have been indexed witha  total of {totalPhotos} photos.</p>
       }
     </div>
   );

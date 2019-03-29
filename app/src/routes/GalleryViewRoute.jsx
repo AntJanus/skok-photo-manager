@@ -1,5 +1,5 @@
 import React from 'react';
-import { transponder } from '../../services/transponder';
+import { transponder } from '../services/transponder';
 
 export class GalleryViewRoute extends React.Component {
   constructor(props) {

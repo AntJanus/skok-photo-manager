@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
-import { DeduplicateAction } from './DeduplicateAction';
-import { ReorganizeAction } from './ReorganizeAction';
+import { DeduplicateAction } from '../components/actions/DeduplicateAction';
+import { ReorganizeAction } from '../components/actions/ReorganizeAction';
 
-export function ActionsRoute(props) {
+export function ActionsRoute() {
   return (
     <div>
     <h1>Choose an action</h1>

@@ -4,6 +4,10 @@ import { ScanSummary } from './ScanSummary';
 import { FolderIndex } from './FolderIndex';
 import { FolderSelect } from './FolderSelect';
 
+export function PhotoIndexRoute({}) {
+
+}
+
 export class PhotoIndexRoute extends React.Component {
   constructor(props) {
     super(props);
