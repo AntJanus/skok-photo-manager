@@ -1,55 +1,49 @@
-import React from 'react';
+import { useState }, React from 'react';
 
 import { ScanSummary } from './ScanSummary';
 import { FolderIndex } from './FolderIndex';
 import { FolderSelect } from './FolderSelect';
 
-export function PhotoIndexRoute({}) {
-
-}
-
-export class PhotoIndexRoute extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      path: '',
-      selectedFolder: false,
-      indexed: false
-    };
-
-    this.handlePath = this.handlePath.bind(this);
-    this.handleIndex = this.handleIndex.bind(this);
-  }
-
-  handlePath(path) {
-    this.setState({
+function handlePathHook(setState) {
+  return (path) => {
+    setState({
       indexed: false,
       path: path,
       selectedFolder: true,
     });
   }
+}
 
-  handleIndex(totalPhotos) {
-    this.setState({
+function handleIndexHook(setState) {
+  return (totalPhotos) => {
+    setState({
       indexed: true,
       selectedFolder: false,
       totalPhotos: totalPhotos,
       path: '',
     });
   }
+}
 
-  render() {
-    return (
-      <div>
-        <ScanSummary indexed={this.state.indexed} totalPhotos={this.state.totalPhotos} />
+export function PhotoIndexRoute() {
+  let [state, setState] = useState({
+    path: '',
+    selectedFolder: false,
+    indexed: false
+  });
 
-        {this.state.selectedFolder ? (
-          <FolderIndex path={this.state.path} handleIndex={this.handleIndex} />
-        ) : (
-          <FolderSelect handlePath={this.handlePath} />
-        )}
-      </div>
-    );
-  }
+  const handlePath = handlePathHook(setState);
+  const handleIndex = handleIndexHook(setState);
+
+  return (
+    <div>
+      <ScanSummary indexed={state.indexed} totalPhotos={state.totalPhotos} />
+
+      {state.selectedFolder ? (
+        <FolderIndex path={state.path} handleIndex={handleIndex} />
+      ) : (
+        <FolderSelect handlePath={handlePath} />
+      )}
+    </div>
+  );
 }
