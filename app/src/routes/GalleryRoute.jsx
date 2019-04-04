@@ -1,42 +1,34 @@
-import React from 'react';
-import { transponder } from '../../services/transponder';
-import { GalleryImage } from './GalleryImage';
-import { Pagination } from './Pagination';
+import React, { useEffect, useState } from 'react';
+import { transponder } from '../services/transponder';
+import { GalleryImage } from '../components/gallery/GalleryImage';
+import { Pagination } from '../components/gallery/Pagination';
 
-export class GalleryRoute extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      photos: [],
-    };
-  }
-
-  componentDidMount() {
-    transponder.send('GET', 'photos', {
+function getPhotos(setPhotos) {
+  transponder
+    .send('GET', 'photos', {
       limit: 30,
     })
-      .then(data => {
-        this.setState({
-          photos: data,
-        });
-      })
-  }
+    .then(data => {
+      setPhotos(data);
+    });
+}
 
-  render() {
-    let photos = this.state.photos.map(photo => {
-      return (
-        <GalleryImage photo={photo} key={photo.id} />
-      )
-    })
-    return (
-      <div className="gallery-container">
-        <GalleryViewChooser />
-        <div>
-          {photos}
-        </div>
-        <Pagination />
+export function GalleryRoute() {
+  let [photos, setPhotos] = useState([]);
+
+  useEffect(() => {
+    getPhotos(setPhotos);
+  });
+
+  return (
+    <div className="gallery-container">
+      {/* <GalleryViewChooser /> */}
+      <div>
+        {photos.map(photo => (
+          <GalleryImage photo={photo} key={photo.id} />
+        ))}
       </div>
-    )
-  }
+      <Pagination />
+    </div>
+  );
 }

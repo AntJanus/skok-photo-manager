@@ -1,29 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { transponder } from '../services/transponder';
 
-export class GalleryViewRoute extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      imageData: {},
-    };
-  }
-
-  componentDidMount() {
-    transponder
+function getImageData(id) {
+  return transponder
       .send('GET', 'photo', {
-        id: this.props.match.params.id,
-      })
-      .then(data => {
-        this.setState({
-          imageData: data,
-        });
+        id
       });
-  }
+}
 
-  render() {
-    let imageData = this.state.imageData;
+export function GalleryViewRoute(props) {
+  let [imageData, setImageData] = useState({});
+
+  useEffect(() => {
+    getImageData(props.match.params.id)
+      .then(setImageData);
+  }, [props.match.params.id]);
 
     return (
       <div className="gallery-single-image">
@@ -51,5 +42,4 @@ export class GalleryViewRoute extends React.Component {
         <img src={imageData.full_path} />
       </div>
     );
-  }
 }
