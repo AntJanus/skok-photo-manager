@@ -1,8 +1,8 @@
-import { useState }, React from 'react';
+import React, { useState } from 'react';
 
-import { ScanSummary } from './ScanSummary';
-import { FolderIndex } from './FolderIndex';
-import { FolderSelect } from './FolderSelect';
+import { ScanSummary } from '../components/photo-scanner/ScanSummary';
+import { FolderIndex } from '../components/photo-scanner/FolderIndex';
+import { FolderSelect } from '../commands/FolderSelect';
 
 function handlePathHook(setState) {
   return (path) => {
