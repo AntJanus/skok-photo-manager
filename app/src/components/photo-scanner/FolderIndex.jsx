@@ -6,7 +6,7 @@ export function FolderIndex({ path, handleIndex }) {
   const indexPhotos = () => {
     transponder
       .send('POST', 'photos/index', {
-        path: this.props.path
+        path: path
       })
       .then(data => {
         handleIndex(data.totalPhotos);

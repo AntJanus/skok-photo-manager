@@ -1,15 +1,1 @@
 @import "../settings.scss";
-
-.button-primary {
-  display: inline-block;
-  background-color: $primary;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px;
-  transition: 0.2s all;
-
-  &:hover {
-    background-color: darken($primary, 10%);
-    border-radius: 3px;
-  }
-}

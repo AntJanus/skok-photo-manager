@@ -34,10 +34,10 @@ export function Navigation() {
           </a>
         </li>
         <li>
-          <a href="#">
+          <NavLink to="/info" activeClassName="active-link">
             <span className="fas fa-info-circle" />
             Info
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>

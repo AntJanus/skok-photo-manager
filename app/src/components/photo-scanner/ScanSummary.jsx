@@ -5,7 +5,7 @@ export function ScanSummary({ indexed: indexed, totalPhotos: totalPhotos }) {
     <div>
       {
         indexed &&
-        <p>Your photos have been indexed witha  total of {totalPhotos} photos.</p>
+        <p>Your photos have been indexed with a total of {totalPhotos} photos.</p>
       }
     </div>
   );

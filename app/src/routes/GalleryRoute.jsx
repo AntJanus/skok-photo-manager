@@ -3,32 +3,37 @@ import { transponder } from '../services/transponder';
 import { GalleryImage } from '../components/gallery/GalleryImage';
 import { Pagination } from '../components/gallery/Pagination';
 
-function getPhotos(setPhotos) {
-  transponder
-    .send('GET', 'photos', {
-      limit: 30,
-    })
-    .then(data => {
-      setPhotos(data);
-    });
-}
-
-export function GalleryRoute() {
+function usePhotos() {
   let [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    getPhotos(setPhotos);
-  });
+    transponder
+      .send('GET', 'photos', {
+        limit: 30,
+      })
+      .then(data => {
+        setPhotos(data);
+      });
+  }, []);
+
+  return photos;
+}
+
+export function GalleryRoute() {
+  const photos = usePhotos();
+  const perPage = 9;
+  const offset = 0;
 
   return (
-    <div className="gallery-container">
-      {/* <GalleryViewChooser /> */}
-      <div>
+    <div>
+      <div className="gallery-container">
+        {/* <GalleryViewChooser /> */}
         {photos.map(photo => (
           <GalleryImage photo={photo} key={photo.id} />
         ))}
       </div>
-      <Pagination />
+      <hr />
+      <Pagination total={photos.length} perPage={perPage} offset={offset} />
     </div>
   );
 }
