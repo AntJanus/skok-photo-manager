@@ -1,4 +1,4 @@
 import { ipcRenderer } from 'electron';
-import { Transponder } from '../../../lib/electron-communicator/electron-communicator';
+import { rendererTransponder } from 'electron-transponder';
 
-export const transponder = new Transponder(ipcRenderer);
+export const transponder = new rendererTransponder(ipcRenderer);

@@ -2,10 +2,10 @@ import { indexPhotos } from './actions/indexPhotos';
 import { getPhotos, getPhoto } from './actions/getPhotos';
 import { openFolder } from './actions/openFolder';
 
-import { Communicator } from '../lib/electron-communicator/electron-communicator';
+import { mainTransponder } from 'electron-transponder';
 import { ipcMain } from 'electron';
 
-let comm = new Communicator(ipcMain);
+let comm = new mainTransponder(ipcMain);
 
 export function bootstrap() {
   console.log('Bootstrapping back-end...');
