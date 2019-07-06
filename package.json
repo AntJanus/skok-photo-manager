@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "electron-transponder": "*",
+    "electron-transponder": "^0.1.4",
     "husky": "1.3.1",
     "jquery": "^3.4.1",
     "knex": "0.16.3",
