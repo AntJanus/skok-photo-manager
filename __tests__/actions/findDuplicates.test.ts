@@ -1,8 +1,9 @@
 import { findDuplicates } from "../../src/actions/findDuplicates";
 import { db } from "../../src/db";
 
-beforeEach(() => {
-  db.batchInsert('files', [
+beforeEach(async () => {
+  await db('files').delete();
+  await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
       hash: '12345',
@@ -24,7 +25,12 @@ afterEach(() => {
 })
 
 test('should find duplicates', async () => {
-  let duplicates = findDuplicates();
+  let duplicates = await findDuplicates();
 
-  console.log('Duplicates: ', duplicates);
+  expect(duplicates.length).toBe(1);
+  expect(duplicates[0].length).toBe(3);
+
+  duplicates[0].forEach(duplicate => {
+    expect(duplicate.hash).toBe('12345');
+  });
 });
