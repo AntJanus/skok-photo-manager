@@ -25,13 +25,10 @@ afterEach(() => {
 });
 
 describe('getPhotoOfTheDay', () => {
-  test('should find photo of the day', () => {
-    const photo = getPhotoOfTheDay();
+  test('should find photo of the day', async () => {
+    const date = new Date('7/23/2018');
+    const photo = await getPhotoOfTheDay(date);
 
-    expect(photo).toBe({
-      file_name: 'file2.jpg',
-      hash: '12345',
-      simple_date: '23/7',
-    });
+    expect(photo.file_name).toBe('file2.jpg');
   });
 });
