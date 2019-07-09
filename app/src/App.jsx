@@ -6,6 +6,9 @@ export function App() {
   return (
     <Router>
       <div className="grid-container">
+        <main>
+          <Router />
+        </main>
       </div>
     </Router>
   );
