@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { PhotoIndexRoute } from './PhotoRoute';
-import { GalleryRoute } from './GalleryRoute';
-import { GalleryViewRoute } from './GalleryViewRoute';
-import { ActionsRoute } from './ActionsRoute';
-import { InfoRoute } from './InfoRoute';
+import { PhotoIndexRoute } from './gallery/PhotoRoute';
+import { GalleryRoute } from './gallery/GalleryRoute';
+import { GalleryViewRoute } from './gallery/GalleryViewRoute';
+import { ActionsRoute } from './photoActions/ActionsRoute';
+import { InfoRoute } from './info/InfoRoute';
 
 const Index = () => <p>Could not find a photo of the day.</p>;
 

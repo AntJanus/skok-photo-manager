@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 
-import { ScanSummary } from '../components/photo-scanner/ScanSummary';
-import { FolderIndex } from '../components/photo-scanner/FolderIndex';
-import { FolderSelect } from '../commands/FolderSelect';
+import { ScanSummary } from '../scanner/ScannerSummary/ScannerSummary';
+import { FolderIndex } from '../scanner/FolderIndex/FolderIndex';
+import { FolderSelect } from '../shared/components/FolderSelect/FolderSelect';
 
 function handlePathHook(setState) {
-  return (path) => {
+  return path => {
     setState({
       indexed: false,
       path: path,
       selectedFolder: true,
     });
-  }
+  };
 }
 
 function handleIndexHook(setState) {
-  return (totalPhotos) => {
+  return totalPhotos => {
     setState({
       indexed: true,
       selectedFolder: false,
       totalPhotos: totalPhotos,
       path: '',
     });
-  }
+  };
 }
 
 export function PhotoIndexRoute() {
   let [state, setState] = useState({
     path: '',
     selectedFolder: false,
-    indexed: false
+    indexed: false,
   });
 
   const handlePath = handlePathHook(setState);

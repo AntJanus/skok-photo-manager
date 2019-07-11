@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { transponder } from '../services/transponder';
-import { GalleryImage } from '../components/gallery/GalleryImage';
-import { Pagination } from '../components/gallery/Pagination';
+import { GalleryImage } from './GalleryImage/GalleryImage';
+import { Pagination } from '../shared/components/Pagination/Pagination';
 
 function usePhotos(offset, perPage) {
   let [photos, setPhotos] = useState([]);

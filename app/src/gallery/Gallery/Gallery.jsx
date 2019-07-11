@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { transponder } from '../services/transponder';
-import { Pagination } from '../shared/components/gallery/Pagination/Pagination';
+import { transponder } from '../../services/transponder';
+import { Pagination } from '../../shared/components/Pagination/Pagination';
 import { Link } from 'react-router-dom';
 
 function usePhotos(offset, perPage) {
