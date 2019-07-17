@@ -1,8 +1,9 @@
 import { getPhotos, getPhoto } from '../../src/actions/getPhotos';
-import { db } from "../../src/db";
+import { db } from '../../src/db';
+import { setup } from '../../__test_helpers__/helpers';
 
 beforeEach(async () => {
-  await db('files').delete();
+  await setup();
   await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
@@ -15,15 +16,9 @@ beforeEach(async () => {
     {
       file_name: 'file2.jpg',
       hash: '12345',
-    }
-  ])
+    },
+  ]);
 });
-
-afterEach(() => {
-  db('files')
-    .delete();
-})
-
 
 describe('getPhotos', () => {
   describe('getPhotos', () => {

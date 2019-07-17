@@ -1,8 +1,9 @@
-import { findDuplicates } from "../../src/actions/findDuplicates";
-import { db } from "../../src/db";
+import { findDuplicates } from '../../src/actions/findDuplicates';
+import { db } from '../../src/db';
+import { setup } from '../../__test_helpers__/helpers';
 
 beforeEach(async () => {
-  await db('files').delete();
+  await setup();
   await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
@@ -15,14 +16,9 @@ beforeEach(async () => {
     {
       file_name: 'file2.jpg',
       hash: '12345',
-    }
-  ])
+    },
+  ]);
 });
-
-afterEach(() => {
-  db('files')
-    .delete();
-})
 
 test('should find duplicates', async () => {
   let duplicates = await findDuplicates();

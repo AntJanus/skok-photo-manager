@@ -1,8 +1,9 @@
 import { getPhotoOfTheDay } from '../../src/actions/getPhotoOfTheDay';
 import { db } from '../../src/db';
+import { setup } from '../../__test_helpers__/helpers';
 
 beforeEach(async () => {
-  await db('files').delete();
+  await setup();
   await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
@@ -18,10 +19,6 @@ beforeEach(async () => {
       hash: '12345',
     },
   ]);
-});
-
-afterEach(() => {
-  db('files').delete();
 });
 
 describe('getPhotoOfTheDay', () => {
