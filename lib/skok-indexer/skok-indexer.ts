@@ -7,7 +7,11 @@ interface Visitor {
   (data: any, cb: {():any}): any;
 }
 
-export function walkPhotos(photoPath: string, visitor: Visitor) {
+interface WalkPhotosResult {
+  totalPhotos: number
+}
+
+export function walkPhotos(photoPath: string, visitor: Visitor): Promise<WalkPhotosResult> {
   return new Promise((resolve, reject) => {
     let queuedPromises = 0;
     let total = 0;

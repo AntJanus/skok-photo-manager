@@ -5,5 +5,7 @@ describe('indexPhotos', () => {
     const path = __dirname;
 
     const photos = await indexPhotos(path);
+
+    expect(photos.totalPhotos).toBe(1);
   });
 });
