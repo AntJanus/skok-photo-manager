@@ -12,7 +12,7 @@
     "start:web": "parcel ./app/index.html --public-url . --no-hmr --target electron",
     "electron": "tsc && electron ./build/app.js",
     "postinstall": "npx electron-builder install-app-deps",
-    "test": "jest",
+    "test:detect": "jest --detectOpenHandles",
     "update:dry": "npx npm-check-updates",
     "update:install": "npx npm-check-updates -u && npm install"
   },
