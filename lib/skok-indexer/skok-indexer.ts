@@ -24,14 +24,14 @@ export function walkPhotos(photoPath: string, visitor: Visitor): Promise<WalkPho
 
         let fileObj = constructFileObject(file, stats, md5);
 
-        visitor(fileObj, () => queuedPromises--);
+        visitor(fileObj, () => {
+          queuedPromises--;
+        });;
         total++;
       })
       .on('end', () => {
-        process.nextTick(() => {
-          resolve({
-            totalPhotos: total
-          });
+        resolve({
+          totalPhotos: total
         });
       })
       .on('error', reject);

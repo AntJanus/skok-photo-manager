@@ -13,6 +13,10 @@ interface File {
   created_at: any
 }
 
+interface Callback {
+  (): {}
+}
+
 export async function indexPhotos(photoPath) {
   const date = new Date();
 
@@ -20,12 +24,12 @@ export async function indexPhotos(photoPath) {
 }
 
 function indexPhoto(photoPath: string, indexId: any, conn) {
-  return (file: File, cb) => {
+  return (file: File, cb: Callback) => {
 
-    checkIfPhotoExists(file, conn)
+    return checkIfPhotoExists(file, conn)
       .then(exists => {
         if (exists) {
-          return;
+          return false;
         }
 
         let date = new Date(file.created_at);
