@@ -28,9 +28,11 @@ export function walkPhotos(photoPath: string, visitor: Visitor): Promise<WalkPho
         total++;
       })
       .on('end', () => {
-        resolve({
-          totalPhotos: total
-        })
+        process.nextTick(() => {
+          resolve({
+            totalPhotos: total
+          });
+        });
       })
       .on('error', reject);
   });
