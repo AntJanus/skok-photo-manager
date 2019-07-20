@@ -35,6 +35,7 @@ function indexPhoto(photoPath: string, indexId: any, conn) {
 
         return conn('files').insert({
           ...file,
+          simple_date: `${day}/${month}`,
           simple_day: day,
           simple_month: month,
           simple_year: year,

@@ -32,7 +32,7 @@ describe('indexPhotos', () => {
       file_type: 'jpg',
       hash: 'd41d8cd98f00b204e9800998ecf8427e',
       name: 'test',
-      simple_date: null,
+      simple_date: '17/7',
       simple_day: 17,
       simple_month: 7,
       simple_year: 2019,
