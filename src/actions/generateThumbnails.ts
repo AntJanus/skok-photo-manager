@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import path from 'path';
+import * as path from 'path';
 
 import { db } from '../db';
 
@@ -60,7 +60,7 @@ export async function generateThumbnails(progressCallback: ProgressCallback) {
   }
 }
 
-async function generateThumbnail(photoName, photoPath: string) {
+export async function generateThumbnail(photoName, photoPath: string) {
   let newPath = path.resolve(basePath, `${photoName}-${Date.now()}.jpg`);
   let largeThumbnail = await sharp(photoPath)
     .resize(largeImageOptions)

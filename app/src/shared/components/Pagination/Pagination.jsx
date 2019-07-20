@@ -1,11 +1,11 @@
 import React from 'react';
 
-export function Pagination({ total, offset, perPage }) {
+export function Pagination({ total, offset, perPage, onPageChange }) {
   let pages =  Math.ceil(total / perPage);
   let currentPage = Math.ceil(offset / perPage);
   let pageListItems = [];
 
-  for (let i = 0;i < pages;i++) {
+  for (let i = 0; i < pages; i++) {
     let classes = ["page-item"];
 
     if (currentPage == i) {
@@ -14,7 +14,7 @@ export function Pagination({ total, offset, perPage }) {
 
     pageListItems.push((
       <li className={classes.join(' ')}>
-        <a href="#" className="page-link">
+        <a href="#" className="page-link" onClick={() => onPageChange(i + 1)}>
           {i + 1}
         </a>
       </li>

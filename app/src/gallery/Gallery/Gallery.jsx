@@ -20,6 +20,18 @@ function usePhotos(offset, perPage) {
   return photos;
 }
 
+function usePagination(perPage) {
+  const [page, setPage] = useState(0);
+
+  return [
+    {
+      offset: page * perPage,
+      currentPage: page
+    },
+    setPage
+  ];
+}
+
 function GalleryItem({ photo }) {
   return (
     <div className="gallery-image">
@@ -31,8 +43,10 @@ function GalleryItem({ photo }) {
 }
 
 export function Gallery() {
-  const offset = 0;
   const perPage = 9;
+  const [pagination, setPage] = usePagination(perPage);
+  const { offset } = pagination;
+  const onPageChange = (destinationPage) => setPage(destinationPage);
   const photos = usePhotos(offset, perPage);
 
   return (
@@ -43,7 +57,7 @@ export function Gallery() {
         ))}
       </div>
       <hr />
-      <Pagination total={photos.length} perPage={perPage} offset={offset} />
+      <Pagination total={photos.length} perPage={perPage} offset={offset} onPageChange={onPageChange} />
     </div>
   );
 }

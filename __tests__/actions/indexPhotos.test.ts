@@ -18,7 +18,7 @@ describe('indexPhotos', () => {
   });
 
   test('should save data about files', async () => {
-    const fixturePath = path.join(__dirname, '../', 'fixtures');
+    const fixturePath = path.join(__dirname, '../', 'fixtures', 'indexPhotos');
 
     await indexPhotos(fixturePath);
 
