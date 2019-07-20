@@ -4,7 +4,7 @@ import { setup } from '../../__test_helpers__/helpers';
 
 beforeEach(async () => {
   await setup();
-  await db.batchInsert('files', [
+  return await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
       hash: '12345',

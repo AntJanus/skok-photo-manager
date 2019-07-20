@@ -5,7 +5,7 @@ import { db } from '../../src/db';
 import { omit } from 'lodash';
 
 beforeEach(async () => {
-  await setup();
+  return await setup();
 });
 
 describe('indexPhotos', () => {

@@ -4,7 +4,7 @@ import { setup } from '../../__test_helpers__/helpers';
 
 beforeEach(async () => {
   await setup();
-  await db.batchInsert('files', [
+  return await db.batchInsert('files', [
     {
       file_name: 'file1.jpg',
       hash: '12345',
@@ -20,13 +20,15 @@ beforeEach(async () => {
   ]);
 });
 
-test('should find duplicates', async () => {
-  let duplicates = await findDuplicates();
+describe('findDuplicates', () => {
+  test('should find duplicates', async () => {
+    let duplicates = await findDuplicates();
 
-  expect(duplicates.length).toBe(1);
-  expect(duplicates[0].length).toBe(3);
+    expect(duplicates.length).toBe(1);
+    expect(duplicates[0].length).toBe(3);
 
-  duplicates[0].forEach(duplicate => {
-    expect(duplicate.hash).toBe('12345');
+    duplicates[0].forEach(duplicate => {
+      expect(duplicate.hash).toBe('12345');
+    });
   });
 });

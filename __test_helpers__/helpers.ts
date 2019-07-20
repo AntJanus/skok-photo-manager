@@ -9,5 +9,5 @@ export async function teardown() {
 }
 
 async function resetDB() {
-  return await db('files').delete();
+  return await db('files').truncate();
 }
