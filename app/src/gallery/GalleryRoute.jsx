@@ -1,39 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { transponder } from '../services/transponder';
-import { GalleryImage } from './GalleryImage/GalleryImage';
-import { Pagination } from '../shared/components/Pagination/Pagination';
+import { Gallery } from './Gallery/Gallery';
+import { GalleryByDate } from './GalleryByDate/GalleryByDate';
 
-function usePhotos(offset, perPage) {
-  let [photos, setPhotos] = useState([]);
+function usePagination(perPage) {
+  const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    transponder
-      .send('GET', 'photos', {
-        limit: perPage,
-        offset,
-      })
-      .then(data => {
-        setPhotos(data);
-      });
-  }, [offset, perPage]);
-
-  return photos;
+  return [
+    {
+      page,
+      offset: perPage * page,
+      perPage,
+    },
+    setPage
+  ];
 }
 
-export function GalleryRoute() {
-  const offset = 0;
-  const perPage = 9;
-  const photos = usePhotos(offset, perPage);
-
+export function GalleryRoute({ match }) {
   return (
-    <div>
-      <div className="gallery-container">
-        {photos.map(photo => (
-          <GalleryImage photo={photo} key={photo.id} />
-        ))}
-      </div>
-      <hr />
-      <Pagination total={photos.length} perPage={perPage} offset={offset} />
-    </div>
+    <>
+      <Switch>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={Gallery}/>
+        <Route
+          exact
+          path={`${match.path}/bydate`}
+          component={GallerByDate} />
+      </Switch>
+    </>
   );
 }
