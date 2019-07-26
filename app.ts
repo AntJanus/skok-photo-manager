@@ -4,7 +4,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 function createWindow() {
-  let win = new BrowserWindow({ width: 800, height: 800 });
+  let win = new BrowserWindow({
+    width: 800,
+    height: 800,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
 
   application.bootstrap();
   console.log('Application bootstrapped');
