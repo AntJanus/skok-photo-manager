@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
-import { DeduplicateAction } from '../components/actions/DeduplicateAction';
-import { ReorganizeAction } from '../components/actions/ReorganizeAction';
+import { DeduplicateAction } from './DeduplicateAction/DeduplicateAction';
+import { ReorganizeAction } from './ReorganizeAction/ReorganizeAction';
 
 export function ActionsRoute() {
   return (

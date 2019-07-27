@@ -8,8 +8,8 @@ function createWindow() {
     width: 800,
     height: 800,
     webPreferences: {
-      nodeIntegration: true,
-    },
+      nodeIntegration: true
+    }
   });
 
   application.bootstrap();

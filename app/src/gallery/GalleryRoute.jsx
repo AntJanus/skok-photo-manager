@@ -18,17 +18,15 @@ function usePagination(perPage) {
 
 export function GalleryRoute({ match }) {
   return (
-    <>
-      <Switch>
-        <Route
-          exact
-          path={`${match.path}`}
-          component={Gallery}/>
-        <Route
-          exact
-          path={`${match.path}/bydate`}
-          component={GallerByDate} />
-      </Switch>
-    </>
+    <Switch>
+      <Route
+        exact
+        path={`${match.path}`}
+        component={Gallery}/>
+      <Route
+        exact
+        path={`${match.path}/bydate`}
+        component={GallerByDate} />
+    </Switch>
   );
 }
