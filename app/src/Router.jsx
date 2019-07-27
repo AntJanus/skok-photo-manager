@@ -8,12 +8,12 @@ import { ActionsRoute } from './photoActions/ActionsRoute';
 import { InfoRoute } from './info/InfoRoute';
 
 const Index = () => <p>Could not find a photo of the day.</p>;
-const NotFoundRoute = () => <p>Not found</p>;
+const NotFoundRoute = () => <p>Invalid view</p>;
 
 export function AppRouter(props) {
   return (
     <Switch>
-      <Route path="" exact component={Index} />
+      <Route path="/" exact component={Index} />
       <Route path="/photo-index" component={PhotoIndexRoute} />
       <Route exact path="/gallery" component={GalleryRoute} />
       <Route path="/gallery/:id" component={GalleryViewRoute} />
