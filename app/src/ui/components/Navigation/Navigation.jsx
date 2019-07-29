@@ -28,10 +28,10 @@ export function Navigation() {
           </NavLink>
         </li>
         <li>
-          <a href="#">
+          <NavLink to="/settings" activeClassName="active-link">
             <span className="fas fa-cogs" />
             Settings
-          </a>
+          </NavLink>
         </li>
         <li>
           <NavLink to="/info" activeClassName="active-link">

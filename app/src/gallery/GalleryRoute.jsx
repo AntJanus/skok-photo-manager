@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { transponder } from '../services/transponder';
 import { Gallery } from './Gallery/Gallery';
 import { GalleryByDate } from './GalleryByDate/GalleryByDate';
+
 
 function usePagination(perPage) {
   const [page, setPage] = useState(0);
@@ -26,7 +28,7 @@ export function GalleryRoute({ match }) {
       <Route
         exact
         path={`${match.path}/bydate`}
-        component={GallerByDate} />
+        component={GalleryByDate} />
     </Switch>
   );
 }
