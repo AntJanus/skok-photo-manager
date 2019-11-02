@@ -43,7 +43,7 @@
     "electron-transponder": "^0.1.4",
     "husky": "3.0.1",
     "jquery": "^3.4.1",
-    "knex": "0.19.1",
+    "knex": "0.19.5",
     "lint-staged": "9.2.1",
     "lodash": "4.17.15",
     "md5-file": "4.0.0",
