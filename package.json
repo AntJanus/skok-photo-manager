@@ -27,7 +27,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "concurrently": "^4.1.1",
-    "electron": "^5.0.8",
+    "electron": "^7.2.4",
     "electron-rebuild": "1.8.5",
     "jest": "24.8.0",
     "onchange": "6.0.0",
