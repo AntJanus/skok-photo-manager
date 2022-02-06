@@ -21,7 +21,7 @@ export function FolderIndex({ path, handleIndex }) {
         <strong>{path}</strong>
       </p>
       <div>
-        <a className="button-primary" onClick={indexPhotos}>
+        <a className="btn btn-primary" onClick={indexPhotos}>
           Scan directory
         </a>
       </div>
